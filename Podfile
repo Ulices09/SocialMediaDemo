@@ -6,8 +6,12 @@ target 'SocialMediaDemo' do
   use_frameworks!
 
   # Pods for SocialMediaDemo
+  # Firebase
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  
+  # View
+  pod 'TextFieldEffects'  
 end
