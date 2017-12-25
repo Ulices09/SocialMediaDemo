@@ -9,6 +9,7 @@
 import UIKit
 import FacebookCore
 import FacebookLogin
+import FirebaseAuth
 
 class SignInViewController: UIViewController {
     
@@ -23,14 +24,27 @@ class SignInViewController: UIViewController {
 
     @IBAction func loginWithFacebookPressed(_ sender: UIButton) {
         let loginManager = LoginManager()
-        loginManager.logIn([ .publicProfile ], viewController: self) { LoginResult in
-            switch LoginResult {
+        loginManager.loginBehavior = .web
+        loginManager.logIn([ .publicProfile ], viewController: self) { loginResult in
+            switch loginResult {
             case .failed(let error):
-                print(error)
+                print("LOGIN-LOG - Facebook sign in Error: \(error)")
             case .cancelled:
-                print("User cancelled login.")
+                print("LOGIN-LOG - User cancelled login.")
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                print("Logged in!")
+                print("LOGIN-LOG - Logged in!")                
+                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
+                self.firebaseAuth(credential)
+            }
+        }
+    }
+    
+    func firebaseAuth(_ credential: AuthCredential) {
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if (error != nil) {
+                print("LOGIN-LOG - Unable to sign in with firebase: \(error)")
+            } else {
+                print("LOGIN-LOG - Sucessful sign in with firebase")
             }
         }
     }

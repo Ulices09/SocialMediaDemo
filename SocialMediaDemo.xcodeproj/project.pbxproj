@@ -18,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F11E27F1FF0AC5400D91D40 /* SocialMediaDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SocialMediaDemo.entitlements; sourceTree = "<group>"; };
 		5F2ECD2B1FF01624000DD787 /* SocialMediaDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMediaDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2ECD2E1FF01624000DD787 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F2ECD301FF01624000DD787 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		5F2ECD2D1FF01624000DD787 /* SocialMediaDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5F11E27F1FF0AC5400D91D40 /* SocialMediaDemo.entitlements */,
 				5FCF2B6F1FF01D620008EF9E /* Model */,
 				5FCF2B701FF01D6D0008EF9E /* View */,
 				5FCF2B711FF01D730008EF9E /* Controller */,
@@ -154,6 +156,11 @@
 					5F2ECD2A1FF01624000DD787 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -404,6 +411,7 @@
 			baseConfigurationReference = 8D0A5A3CCB5D2568EA4C3ECD /* Pods-SocialMediaDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SocialMediaDemo/SocialMediaDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HLL9B4R9ZN;
 				INFOPLIST_FILE = SocialMediaDemo/Info.plist;
@@ -420,6 +428,7 @@
 			baseConfigurationReference = CE21D670078CAA1312580FAD /* Pods-SocialMediaDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SocialMediaDemo/SocialMediaDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HLL9B4R9ZN;
 				INFOPLIST_FILE = SocialMediaDemo/Info.plist;
