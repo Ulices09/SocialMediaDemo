@@ -12,6 +12,9 @@ target 'SocialMediaDemo' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   
+  # Facebook
+  pod 'FacebookLogin'
+  
   # View
   pod 'TextFieldEffects'  
 end
