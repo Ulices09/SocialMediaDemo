@@ -13,6 +13,9 @@ import FirebaseAuth
 
 class SignInViewController: UIViewController {
     
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -39,6 +42,31 @@ class SignInViewController: UIViewController {
         }
     }
     
+    @IBAction func signInPressed(_ sender: UIButton) {
+        print(usernameTextField.text)
+        print(passwordTextField.text)
+        
+        if let username = usernameTextField.text, !username.isEmpty, let password = passwordTextField.text, !password.isEmpty, password.count >= 6 {
+            Auth.auth().signIn(withEmail: username, password: password, completion: { (user, error) in
+                if error != nil {
+                    Auth.auth().createUser(withEmail: username, password: password, completion: { (user, error) in
+                        if error != nil {
+                            print("LOGIN-LOG - Email Auth Error: \(error)")
+                            self.alertMessage(title: "Error", message: "Cannot create account.")
+                        } else {
+                            print("LOGIN-LOG - Email Auth Success")
+                        }
+                    })
+                } else {
+                    print("LOGIN-LOG - Email Auth Success")
+                }
+            })
+        } else {
+            self.alertMessage(title: "Error", message: "Incorrect input data.")
+        }
+    }
+    
+    
     func firebaseAuth(_ credential: AuthCredential) {
         Auth.auth().signIn(with: credential) { (user, error) in
             if (error != nil) {
@@ -47,6 +75,23 @@ class SignInViewController: UIViewController {
                 print("LOGIN-LOG - Sucessful sign in with firebase")
             }
         }
+    }
+    
+    func alertMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func successAlertMessage(message: String) {
+        let alert = UIAlertController(title: "Success", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ -> Void in
+            _ = self.navigationController?.popViewController(animated: true)
+        })
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
