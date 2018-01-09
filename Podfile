@@ -16,5 +16,8 @@ target 'SocialMediaDemo' do
   pod 'FacebookLogin'
   
   # View
-  pod 'TextFieldEffects'  
+  pod 'TextFieldEffects'
+  
+  #Others
+  pod 'SwiftKeychainWrapper'
 end

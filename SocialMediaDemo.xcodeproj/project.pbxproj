@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F04EC0B200468F600A3CEB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F04EC0A200468F600A3CEB1 /* Constants.swift */; };
+		5F04EC0D20046C6100A3CEB1 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F04EC0C20046C6100A3CEB1 /* FeedViewController.swift */; };
 		5F2ECD2F1FF01624000DD787 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2ECD2E1FF01624000DD787 /* AppDelegate.swift */; };
 		5F2ECD311FF01624000DD787 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2ECD301FF01624000DD787 /* SignInViewController.swift */; };
 		5F2ECD341FF01624000DD787 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F2ECD321FF01624000DD787 /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F04EC0A200468F600A3CEB1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5F04EC0C20046C6100A3CEB1 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		5F11E27F1FF0AC5400D91D40 /* SocialMediaDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SocialMediaDemo.entitlements; sourceTree = "<group>"; };
 		5F2ECD2B1FF01624000DD787 /* SocialMediaDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMediaDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2ECD2E1FF01624000DD787 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,10 +58,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5F04EC09200468CA00A3CEB1 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				5F04EC0A200468F600A3CEB1 /* Constants.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		5F2ECD221FF01624000DD787 = {
 			isa = PBXGroup;
 			children = (
 				5F2ECD2D1FF01624000DD787 /* SocialMediaDemo */,
+				5F04EC09200468CA00A3CEB1 /* Util */,
 				5F2ECD2C1FF01624000DD787 /* Products */,
 				0677B733B417A87EF17A1875 /* Pods */,
 				C862802D4AD50B1BAFF3F55A /* Frameworks */,
@@ -108,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				5F2ECD301FF01624000DD787 /* SignInViewController.swift */,
+				5F04EC0C20046C6100A3CEB1 /* FeedViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,6 +225,7 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -223,6 +238,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -273,7 +289,9 @@
 			files = (
 				5F2ECD311FF01624000DD787 /* SignInViewController.swift in Sources */,
 				5FCF2B731FF047550008EF9E /* GradientButton.swift in Sources */,
+				5F04EC0D20046C6100A3CEB1 /* FeedViewController.swift in Sources */,
 				5F2ECD2F1FF01624000DD787 /* AppDelegate.swift in Sources */,
+				5F04EC0B200468F600A3CEB1 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@ import UIKit
 import FacebookCore
 import FacebookLogin
 import FirebaseAuth
+import SwiftKeychainWrapper
 
 class SignInViewController: UIViewController {
     
@@ -19,10 +20,15 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        autoSignIn()
+    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func autoSignIn() {
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
+            performSegue(withIdentifier: "FeedViewController", sender: nil)
+        }
     }
 
     @IBAction func loginWithFacebookPressed(_ sender: UIButton) {
@@ -55,10 +61,18 @@ class SignInViewController: UIViewController {
                             self.alertMessage(title: "Error", message: "Cannot create account.")
                         } else {
                             print("LOGIN-LOG - Email Auth Success")
+                            
+                            if let user = user {
+                                self.completeSignIn(uid: user.uid)
+                            }
                         }
                     })
                 } else {
                     print("LOGIN-LOG - Email Auth Success")
+                    
+                    if let user = user {
+                        self.completeSignIn(uid: user.uid)
+                    }
                 }
             })
         } else {
@@ -73,8 +87,17 @@ class SignInViewController: UIViewController {
                 print("LOGIN-LOG - Unable to sign in with firebase: \(error)")
             } else {
                 print("LOGIN-LOG - Sucessful sign in with firebase")
+                
+                if let user = user {
+                    self.completeSignIn(uid: user.uid)
+                }
             }
         }
+    }
+    
+    func completeSignIn(uid: String) {
+        KeychainWrapper.standard.set(uid, forKey: KEY_UID)
+        performSegue(withIdentifier: "FeedViewController", sender: nil)
     }
     
     func alertMessage(title: String, message: String) {
