@@ -15,6 +15,7 @@
 		5F2ECD361FF01624000DD787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F2ECD351FF01624000DD787 /* Assets.xcassets */; };
 		5F2ECD391FF01624000DD787 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F2ECD371FF01624000DD787 /* LaunchScreen.storyboard */; };
 		5F2ECD411FF01736000DD787 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F2ECD401FF01736000DD787 /* GoogleService-Info.plist */; };
+		5F60ECC82013B58400B0D4AD /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F60ECC72013B58400B0D4AD /* CircleImage.swift */; };
 		5FCF2B731FF047550008EF9E /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF2B721FF047550008EF9E /* GradientButton.swift */; };
 		D3F35016CD3FBFA93DE0EC46 /* Pods_SocialMediaDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99B0F14F92407A8ECBED858 /* Pods_SocialMediaDemo.framework */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		5F2ECD381FF01624000DD787 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F2ECD3A1FF01624000DD787 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F2ECD401FF01736000DD787 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5F60ECC72013B58400B0D4AD /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		5FCF2B721FF047550008EF9E /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		8D0A5A3CCB5D2568EA4C3ECD /* Pods-SocialMediaDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialMediaDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialMediaDemo/Pods-SocialMediaDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		CE21D670078CAA1312580FAD /* Pods-SocialMediaDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialMediaDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialMediaDemo/Pods-SocialMediaDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				5FCF2B721FF047550008EF9E /* GradientButton.swift */,
+				5F60ECC72013B58400B0D4AD /* CircleImage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				5F04EC0D20046C6100A3CEB1 /* FeedViewController.swift in Sources */,
 				5F2ECD2F1FF01624000DD787 /* AppDelegate.swift in Sources */,
 				5F04EC0B200468F600A3CEB1 /* Constants.swift in Sources */,
+				5F60ECC82013B58400B0D4AD /* CircleImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
