@@ -229,12 +229,12 @@
                                     <constraint firstAttribute="height" constant="65" id="uJ7-ux-lgW"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JuB-qJ-4Nz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JuB-qJ-4Nz">
                                 <rect key="frame" x="0.0" y="130" width="375" height="537"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" name="PrimaryColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="343" id="dgg-G4-G61">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="343" id="dgg-G4-G61" customClass="PostCell" customModule="SocialMediaDemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="343"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dgg-G4-G61" id="oeD-sV-F6G">
@@ -301,6 +301,7 @@
                                                         <constraint firstItem="fHH-T3-n3b" firstAttribute="top" secondItem="tib-PJ-rZy" secondAttribute="top" constant="27" id="Eer-Ri-Ev9"/>
                                                         <constraint firstAttribute="trailing" secondItem="IJZ-jv-T7m" secondAttribute="trailing" constant="8" id="Fjf-Ey-fPI"/>
                                                         <constraint firstItem="q4q-KL-YGa" firstAttribute="leading" secondItem="tib-PJ-rZy" secondAttribute="leading" constant="8" id="OdQ-vF-igv"/>
+                                                        <constraint firstAttribute="height" constant="321" id="QUh-a5-fCO"/>
                                                         <constraint firstItem="q4q-KL-YGa" firstAttribute="top" secondItem="gQl-OT-C7H" secondAttribute="bottom" constant="5" id="SaA-DZ-A6p"/>
                                                         <constraint firstAttribute="trailing" secondItem="gQl-OT-C7H" secondAttribute="trailing" constant="8" id="SzA-d6-wFx"/>
                                                         <constraint firstItem="an2-Zu-Iwk" firstAttribute="top" secondItem="tib-PJ-rZy" secondAttribute="top" constant="8" id="V9m-4j-d5D"/>
@@ -319,7 +320,14 @@
                                                 <constraint firstItem="tib-PJ-rZy" firstAttribute="top" secondItem="oeD-sV-F6G" secondAttribute="topMargin" id="xln-uV-Pv6"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.52156862749999999" green="0.64705882349999999" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="PrimaryColor"/>
+                                        <connections>
+                                            <outlet property="likesLabel" destination="IJZ-jv-T7m" id="Ul4-1I-179"/>
+                                            <outlet property="postImage" destination="q4q-KL-YGa" id="IYT-Dv-5iX"/>
+                                            <outlet property="postText" destination="gQl-OT-C7H" id="Ub7-QX-RZI"/>
+                                            <outlet property="profileImage" destination="Qo9-cC-DEd" id="Bdi-H5-8hU"/>
+                                            <outlet property="usernameLabel" destination="fHH-T3-n3b" id="hPw-zV-YS1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -335,7 +343,11 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Social Media" id="Kif-0W-Fpb">
-                                        <barButtonItem key="leftBarButtonItem" title="&lt;&lt;" id="dJB-4N-v6T"/>
+                                        <barButtonItem key="leftBarButtonItem" title="&lt;&lt;" id="dJB-4N-v6T">
+                                            <connections>
+                                                <action selector="signOutBtnPressed:" destination="Nzx-PU-S4p" id="dd0-op-tlQ"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -355,6 +367,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AQc-eV-dLi"/>
                     </view>
+                    <connections>
+                        <outlet property="feedTableView" destination="JuB-qJ-4Nz" id="eAr-kK-Rbk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z3t-4U-G3j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -368,9 +383,6 @@
         <image name="placeholder" width="470" height="264"/>
         <image name="primary-logo" width="217" height="66"/>
         <image name="profile" width="512" height="512"/>
-        <namedColor name="ActionColor">
-            <color red="0.35699999332427979" green="0.75300002098083496" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="ActionColor">
             <color red="0.35699999332427979" green="0.75300002098083496" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

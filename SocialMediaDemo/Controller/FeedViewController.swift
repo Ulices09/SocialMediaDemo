@@ -10,18 +10,28 @@ import UIKit
 import SwiftKeychainWrapper
 import FirebaseAuth
 
-class FeedViewController: UIViewController {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var feedTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        feedTableView.delegate = self
+        feedTableView.dataSource = self
     }
-    
-    func logout() {
+
+    @IBAction func signOutBtnPressed(_ sender: UIBarButtonItem) {
         KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         try! Auth.auth().signOut()
         //TODO: Perform Segue to SignIn View
     }
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return feedTableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostCell
+    }
 }
