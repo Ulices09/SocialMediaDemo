@@ -63,7 +63,7 @@ class SignInViewController: UIViewController {
                             print("LOGIN-LOG - Email Auth Success")
                             
                             if let user = user {
-                                self.completeSignIn(uid: user.uid)
+                                self.prepareSignIn(user: user)
                             }
                         }
                     })
@@ -71,7 +71,7 @@ class SignInViewController: UIViewController {
                     print("LOGIN-LOG - Email Auth Success")
                     
                     if let user = user {
-                        self.completeSignIn(uid: user.uid)
+                        self.prepareSignIn(user: user)
                     }
                 }
             })
@@ -89,13 +89,24 @@ class SignInViewController: UIViewController {
                 print("LOGIN-LOG - Sucessful sign in with firebase")
                 
                 if let user = user {
-                    self.completeSignIn(uid: user.uid)
+                    self.prepareSignIn(user: user, credential: credential)
                 }
             }
         }
     }
     
-    func completeSignIn(uid: String) {
+    func prepareSignIn(user: User) {
+        let userData = ["provider": user.providerID]
+        self.completeSignIn(uid: user.uid, userData: userData)
+    }
+    
+    func prepareSignIn(user: User, credential: AuthCredential) {
+        let userData = ["provider": credential.provider]
+        self.completeSignIn(uid: user.uid, userData: userData)
+    }
+    
+    func completeSignIn(uid: String, userData: Dictionary<String, String>) {
+        DataService.ds.crateFirebaseDBUser(uid: uid, userData: userData)
         KeychainWrapper.standard.set(uid, forKey: KEY_UID)
         performSegue(withIdentifier: "FeedViewController", sender: nil)
     }

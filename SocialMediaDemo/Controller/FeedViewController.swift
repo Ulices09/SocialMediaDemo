@@ -25,6 +25,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         try! Auth.auth().signOut()
         //TODO: Perform Segue to SignIn View
+        self.dismiss(animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
