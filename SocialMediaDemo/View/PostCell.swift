@@ -26,5 +26,26 @@ class PostCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func configureCell(post: Post) {
+        self.postText.text = post.text
+        self.likesLabel.text = "\(post.likes)"
+        self.setPostImage(imageURL: post.imageUrl)
+    }
+    
+    func setPostImage(imageURL: String) {
+        let url = URL(string: imageURL)!
+        DispatchQueue.global().async {
+            do{
+                let data = try Data(contentsOf: url)
+                DispatchQueue.main.sync {
+                    self.postImage.image = UIImage(data: data)
+                }
+            } catch let error as NSError {
+                print("Error loading post image:", error)
+            }
+            
+        }
+    }
 
 }

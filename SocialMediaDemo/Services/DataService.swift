@@ -15,23 +15,23 @@ class DataService {
     
     static let ds = DataService()
     
-    private var _REF_BASE = ref
-    private var _REF_POSTS = ref.child("posts")
-    private var _REF_USERS = ref.child("users")
+    private var _baseRef = ref
+    private var _postsRef = ref.child("posts")
+    private var _usersRef = ref.child("users")
     
-    var REF_BASE: DatabaseReference {
-        return self._REF_BASE
+    var baseRef: DatabaseReference {
+        return self._baseRef
     }
     
-    var REF_POSTS: DatabaseReference {
-        return self._REF_POSTS
+    var postsRef: DatabaseReference {
+        return self._postsRef
     }
     
-    var REF_USERS: DatabaseReference {
-        return self._REF_USERS
+    var usersRef: DatabaseReference {
+        return self._usersRef
     }
     
     func crateFirebaseDBUser(uid: String, userData: Dictionary<String, String>) {
-        _REF_USERS.child(uid).updateChildValues(userData)
+        _usersRef.child(uid).updateChildValues(userData)
     }
 }
