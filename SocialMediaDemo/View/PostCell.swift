@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class PostCell: UITableViewCell {
     
@@ -30,22 +31,44 @@ class PostCell: UITableViewCell {
     func configureCell(post: Post) {
         self.postText.text = post.text
         self.likesLabel.text = "\(post.likes)"
-        self.setPostImage(imageURL: post.imageUrl)
+        self.setPostImage(imageUrl: post.imageUrl)
     }
     
-    func setPostImage(imageURL: String) {
-        let url = URL(string: imageURL)!
-        DispatchQueue.global().async {
-            do{
-                let data = try Data(contentsOf: url)
-                DispatchQueue.main.sync {
-                    self.postImage.image = UIImage(data: data)
-                }
-            } catch let error as NSError {
-                print("Error loading post image:", error)
-            }
+    
+    func setPostImage(imageUrl: String) {        
+        if let image = FeedViewController.imageCache.object(forKey: imageUrl as NSString) {
+            self.postImage.image = image
+        } else {
+            let imageRef = Storage.storage().reference(forURL: imageUrl)
             
+            imageRef.getData(maxSize: 2 * 1024 * 1024, completion: {(data, error) in
+                if error != nil {
+                    print("IMAGE DOWNLOAD LOG - ", error as Any)
+                } else {
+                    if let imageData = data {
+                        if let img = UIImage(data: imageData) {
+                            self.postImage.image = img
+                            FeedViewController.imageCache.setObject(img, forKey: imageUrl as NSString)
+                        }
+                    }
+                }
+            })
         }
     }
+    
+//    func setPostImage(imageURL: String) {
+//        let url = URL(string: imageURL)!
+//        DispatchQueue.global().async {
+//            do{
+//                let data = try Data(contentsOf: url)
+//                DispatchQueue.main.sync {
+//                    self.postImage.image = UIImage(data: data)
+//                }
+//            } catch let error as NSError {
+//                print("Error loading post image:", error)
+//            }
+//
+//        }
+//    }
 
 }

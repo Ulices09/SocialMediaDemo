@@ -16,9 +16,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var feedTableView: UITableView!
     @IBOutlet weak var addImageView: UIImageView!
     
-    
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
+    static var imageCache = NSCache<NSString, UIImage>()
 
     override func viewDidLoad() {
         super.viewDidLoad()

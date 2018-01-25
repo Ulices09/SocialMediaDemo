@@ -8,16 +8,20 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseStorage
 
-let ref = Database.database().reference()
+let REF_DATABASE = Database.database().reference()
+let REF_STORAGE = Storage.storage().reference()
 
 class DataService {
     
     static let ds = DataService()
     
-    private var _baseRef = ref
-    private var _postsRef = ref.child("posts")
-    private var _usersRef = ref.child("users")
+    private var _baseRef = REF_DATABASE
+    private var _postsRef = REF_DATABASE.child("posts")
+    private var _usersRef = REF_DATABASE.child("users")
+    
+    private var _postsImagesRef = REF_STORAGE.child("post-pics")
     
     var baseRef: DatabaseReference {
         return self._baseRef
@@ -29,6 +33,10 @@ class DataService {
     
     var usersRef: DatabaseReference {
         return self._usersRef
+    }
+    
+    var postsImagesRef: StorageReference {
+        return self._postsImagesRef
     }
     
     func crateFirebaseDBUser(uid: String, userData: Dictionary<String, String>) {
