@@ -217,6 +217,9 @@
                                                     <constraint firstAttribute="width" constant="49" id="jrX-Id-i6Q"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="add-post"/>
+                                                <connections>
+                                                    <action selector="newPostBtnPressed:" destination="Nzx-PU-S4p" eventType="touchUpInside" id="9kR-J0-8SZ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -372,6 +375,7 @@
                     <connections>
                         <outlet property="addImageView" destination="DIO-3b-tLJ" id="fp3-wW-qIh"/>
                         <outlet property="feedTableView" destination="JuB-qJ-4Nz" id="eAr-kK-Rbk"/>
+                        <outlet property="postTextField" destination="Kxr-20-7w4" id="Usp-Mw-GcD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z3t-4U-G3j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -388,9 +392,6 @@
         <image name="profile" width="512" height="512"/>
         <namedColor name="ActionColor">
             <color red="0.35699999332427979" green="0.75300002098083496" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="PrimaryColor">
-            <color red="0.22699999809265137" green="0.31400001049041748" blue="0.41999998688697815" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PrimaryColor">
             <color red="0.22699999809265137" green="0.31400001049041748" blue="0.41999998688697815" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

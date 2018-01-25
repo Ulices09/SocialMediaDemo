@@ -10,15 +10,18 @@ import UIKit
 import SwiftKeychainWrapper
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var feedTableView: UITableView!
     @IBOutlet weak var addImageView: UIImageView!
+    @IBOutlet weak var postTextField: UITextField!
     
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
     static var imageCache = NSCache<NSString, UIImage>()
+    var imageChanged = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,9 +92,55 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImageView.image = image
+            imageChanged = true
         }
         
         imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func newPostBtnPressed(_ sender: Any) {
+        guard let postText = postTextField.text, postText != "" else {
+            return
+        }
+        
+        guard let image = addImageView.image, imageChanged else {
+            return
+        }
+        
+        if let imageData = UIImageJPEGRepresentation(image, 0.2) {
+            let imageUid = NSUUID().uuidString
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            DataService.ds.postsImagesRef.child(imageUid).putData(imageData, metadata: metadata, completion: {(storageMetadada, error) in
+                if error != nil {
+                    print("ERROR LOG - ", error)
+                } else {
+                    if let imageUrl = storageMetadada?.downloadURL()?.absoluteString {
+                        self.insertPost(text: postText, imageUrl: imageUrl)
+                        self.resetInputValues()
+                    }
+                }
+            })
+        }
+    }
+    
+    func insertPost(text: String, imageUrl: String) {
+        let post: Dictionary<String, Any> = [
+            "text": text,
+            "imageUrl": imageUrl,
+            "likes": 0
+        ]
+        
+        let newPost = DataService.ds.postsRef.childByAutoId()
+        newPost.setValue(post)
+        
+    }
+    
+    func resetInputValues() {
+        postTextField.text = nil
+        addImageView.image = UIImage(named: "add-image")
+        self.imageChanged = false
     }
     
 }
