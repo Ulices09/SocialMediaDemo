@@ -326,6 +326,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="PrimaryColor"/>
                                         <connections>
+                                            <outlet property="likeImageView" destination="an2-Zu-Iwk" id="r6Q-3H-29u"/>
                                             <outlet property="likesLabel" destination="IJZ-jv-T7m" id="Ul4-1I-179"/>
                                             <outlet property="postImage" destination="q4q-KL-YGa" id="IYT-Dv-5iX"/>
                                             <outlet property="postText" destination="gQl-OT-C7H" id="Ub7-QX-RZI"/>

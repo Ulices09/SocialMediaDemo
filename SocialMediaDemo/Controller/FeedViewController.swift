@@ -107,6 +107,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             return
         }
         
+        print("POST PASO VALIDACION")
+        
         if let imageData = UIImageJPEGRepresentation(image, 0.2) {
             let imageUid = NSUUID().uuidString
             let metadata = StorageMetadata()
@@ -114,7 +116,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             DataService.ds.postsImagesRef.child(imageUid).putData(imageData, metadata: metadata, completion: {(storageMetadada, error) in
                 if error != nil {
-                    print("ERROR LOG - ", error)
+                    print("ERROR LOG - ", error as Any)
                 } else {
                     if let imageUrl = storageMetadada?.downloadURL()?.absoluteString {
                         self.insertPost(text: postText, imageUrl: imageUrl)
@@ -134,7 +136,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let newPost = DataService.ds.postsRef.childByAutoId()
         newPost.setValue(post)
-        
+        DataService.ds.currentUserPostsRef.child(newPost.key).setValue(true)
     }
     
     func resetInputValues() {
